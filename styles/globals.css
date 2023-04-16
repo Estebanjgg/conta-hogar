@@ -105,3 +105,104 @@ a {
     color-scheme: dark;
   }
 }
+
+.item-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.item-form {
+  width: 80%;
+  max-width: 800px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 20px;
+}
+
+.item-form form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.item-form input {
+  margin: 10px 0;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
+  flex-basis: 20%;
+}
+
+.item-form .name-input {
+  flex-basis: 40%;
+}
+
+.item-form .value-input {
+  flex-basis: 20%;
+}
+
+.item-form .date-input {
+  flex-basis: 20%;
+}
+
+.item-form button {
+  margin: 10px 0;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.item-form ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.item-form li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+}
+
+.item-form li:last-child {
+  border-bottom: none;
+}
+
+.item-form button.edit {
+  background-color: #17a2b8;
+}
+
+.item-form button.delete {
+  background-color: #dc3545;
+}
+
+.item-form .total-value {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 600px) {
+  .item-form form {
+    flex-direction: column;
+  }
+  
+  .item-form input {
+    flex-basis: 100%;
+  }
+  
+  .item-form .name-input, 
+  .item-form .value-input, 
+  .item-form .date-input {
+    flex-basis: 100%;
+  }
+}
