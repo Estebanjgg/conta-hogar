@@ -11,6 +11,10 @@ const ItemForm = () => {
     }
   }, []);
 
+  // Agregar el cálculo del valor total de los elementos
+  const totalValue = items.reduce((total, item) => total + parseInt(item.value, 10), 0);
+
+
   function handleSubmit(event) {
     event.preventDefault();
     const form = event.target;
@@ -81,13 +85,12 @@ const ItemForm = () => {
               <div className="name">{item.name}</div>
               <div className="value">R$ {item.value}</div>
               <div className="date">{item.date}</div>
-              <button onClick={() => handleEdit(index)} className="edit">
+             <button onClick={() => handleEdit(index)} className="edit">
                 Edit
               </button>
               <button onClick={() => handleDelete(index)} className="delete">
                 Delete
               </button>
-              
             </li>
           ))}
         </ul>
@@ -101,6 +104,7 @@ const ItemForm = () => {
           <div className="accounts">
             <h2>Accounts</h2>
             {accounts.map((account, index) => (
+            
 <div key={account.id} className="account">
 <h3>Account {index + 1}</h3>
 <ul>
@@ -117,9 +121,14 @@ const ItemForm = () => {
 </div>
 ))}
 </div>
+        )
+}
 </div>
-        
-));
+        )
+
+);
+</div>   
+  )
 };
-</div>
+
 export default ItemForm;
