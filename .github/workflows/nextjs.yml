@@ -42,7 +42,7 @@ jobs:
       - name: Export static HTML with Next.js
         run: npm run export
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v4.1.2
+        uses: peaceiris/actions-gh-pages@v4.1.1
         with:
           personal_token: ${{ secrets.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 }}
           publish_branch: gh-pages
