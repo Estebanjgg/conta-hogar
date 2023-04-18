@@ -8,6 +8,12 @@ const Background = () => {
     'https://images6.alphacoders.com/121/1216721.jpg',
     'https://images2.alphacoders.com/100/1007550.jpg',
     'https://images.alphacoders.com/101/1011679.jpg',
+    'https://images.alphacoders.com/605/605592.png',
+    'https://images3.alphacoders.com/144/144565.jpg',
+    'https://images6.alphacoders.com/415/415519.jpg',
+    'https://wall.alphacoders.com/big.php?i=598786&lang=Portuguese',
+    'https://images4.alphacoders.com/128/128706.png',
+    'https://images3.alphacoders.com/610/610125.png'
   ];
 
   useEffect(() => {
