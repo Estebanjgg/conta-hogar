@@ -88,31 +88,16 @@ body {
   max-width: 100vw;
   overflow-x: hidden;
 }
-
-.background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
+.background-container {
   background-size: cover;
   background-position: center;
-  animation-name: changeBackground;
-  animation-duration: 60s;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
+  width: 100%;
+  height: 100%;
+  transition: background-image 1s ease-in-out;
 }
 
-@keyframes changeBackground {
-  0% { opacity: 0; }
-  5% { opacity: 1; }
-  20% { opacity: 1; }
-  25% { opacity: 0; }
-  100% { opacity: 0; }
-}
 
-Link {
+a {
   color: inherit;
   text-decoration: none;
 }
@@ -144,10 +129,12 @@ Link {
   border-radius: 4px;
   padding: 20px;
   margin-bottom: 20px;
+  background-color: #0d0d0e;
+  opacity: 0.8;
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --background-color: #222;
+    --background-color: hsl(0, 3%, 7%);
     --text-color: #fff;
     --border-color: #888;
   }
@@ -161,7 +148,7 @@ Link {
   padding: 20px;
   background-color: var(--background-color);
   color: var(--text-color);
-  margin: 0 auto; /* Agrega esta propiedad para centrar horizontalmente */
+  margin: 20px auto; /* Agrega esta propiedad para centrar horizontalmente */
 }
 .h2acount {
   text-align: center;
@@ -205,6 +192,8 @@ Link {
   border: 1px solid #ddd;
   border-radius: 4px;
   padding: 20px;
+  background-color: #0d0d0e;
+  opacity: 0.8;
 }
 
 .item-form form {
@@ -314,7 +303,7 @@ nav {
   font-weight: bold;
   font-size: 24px;
   text-decoration: none;
-  color: #fff;
+  color: #fff;  
 }
 
 .menu {
@@ -322,121 +311,38 @@ nav {
   margin: 0;
   padding: 0;
   display: flex;
+  justify-content: center;
 }
 
 .menu li {
   margin: 0 10px;
 }
 
-.menu Link {
+.menu a {
   color: #fff;
   text-decoration: none;
   padding: 10px;
   border-radius: 5px;
 }
 
-.menu Link:hover {
+.menu a:hover {
   background-color: #fff;
   color: #333;
 }
 
-.toggle {
-  width: 30px;
-  height: 20px;
-  position: absolute;
-  top: 15px;
-  right: 10px;
-  display: none;
-  cursor: pointer;
-}
 
-.toggle:before,
-.toggle:after {
-  content: '';
-  width: 100%;
-  height: 3px;
-  background-color: #fff;
-  display: block;
-  position: absolute;
-}
-
-.toggle:before {
-  top: -6px;
-}
-
-.toggle:after {
-  bottom: -6px;
-}
-
-@media (max-width: 768px) {
-  .menu {
-    display: none;
-    position: absolute;
-    top: 50px;
-    left: 0;
-    width: 100%;
-    background-color: #333;
-    padding: 10px;
-    text-align: center;
-    flex-direction: column;
-  }
-  
-  .menu li {
-    margin: 10px 0;
-  }
-  
-  .menu Link {
-    display: block;
-    padding: 10px;
-    border-radius: 5px;
-  }
-  
-  .toggle {
-    display: block;
-  }
-}
 @media only screen and (max-width: 600px) {
   .item-form form {
     flex-direction: column;
   }
-  
+
   .item-form input {
     flex-basis: 100%;
   }
-  
-  .item-form .name-input, 
-  .item-form .value-input, 
+
+  .item-form .name-input,
+  .item-form .value-input,
   .item-form .date-input {
     flex-basis: 100%;
-  }
-}
-
-/* estilos para .footer, nav, .logo, .menu, .toggle */
-
-@media (max-width: 768px) {
-  .menu {
-    display: none;
-    position: absolute;
-    top: 50px;
-    left: 0;
-    width: 100%;
-    background-color: #333;
-    padding: 10px;
-    text-align: center;
-    flex-direction: column;
-  }
-  
-  .menu li {
-    margin: 10px 0;
-  }
-  
-  .menu Link {
-    display: block;
-    padding: 10px;
-    border-radius: 5px;
-  }
-  
-  .toggle {
-    display: block;
   }
 }
