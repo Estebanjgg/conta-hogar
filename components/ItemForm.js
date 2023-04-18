@@ -118,7 +118,11 @@ const ItemForm = () => {
 
   return (
     <div className="container">
+      <h2>Control de Gastos</h2>
       <div className="row">
+      
+      <br />
+      <br />
         <div className="item-form">
           <form onSubmit={handleSubmit}>
             <input

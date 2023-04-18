@@ -115,11 +115,22 @@ a {
   height: 100%;
   min-height: 100vh;
 }
+
+.container h2{
+  font-size: 3rem;
+  color: rgb(245, 1, 1);
+  font-family: Arial, sans-serif;
+  background-color: #0d0d0e;
+  opacity: 0.8;
+
+}
+
 .row {
   display: flex;
   width: 100%;
   justify-content: center;
-} 
+  margin-top: 2rem;
+}
 
 .item-form-container,
 .accounts-container {
@@ -151,8 +162,7 @@ a {
   margin: 20px auto; /* Agrega esta propiedad para centrar horizontalmente */
 }
 .h2acount {
-  text-align: center;
-}
+  text-align: center;}
 .account ul {
   list-style: none;
   margin: 0;
