@@ -1,26 +1,28 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Home Account Management Page Unwrapped in Next.js
+
+This project meets the needs for keeping accounts at home. 
+
+## Initiating Project
+`yarn install`
+** or **
+ `npm install`
 
 ## Getting Started
 
-First, run the development server:
+`yarn dev`
+** or**
+` npm run dev`
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Project images
+![Screenshot_3](https://user-images.githubusercontent.com/91167097/232856953-00e3fe09-b344-4fa5-8030-25a96d6c9b07.png)
+![Screenshot_4](https://user-images.githubusercontent.com/91167097/232856973-b38844d3-f929-4697-afb4-6dd7a8bd8934.png)
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+<p align="center">
+  <a href="https://estebanjgg.github.io/conta-hogar" target="_blank">
+    <img src="https://img.shields.io/badge/Click%20here%20to%20see%20the%20project-red?style=for-the-badge" alt="Click here to see the project" />
+  </a>
+</p>
 
 ## Learn More
 
