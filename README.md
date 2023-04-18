@@ -1,3 +1,13 @@
+<div align="center">
+
+[![Visitors](https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2FEstebanjgg%2Fconta-hogar&label=VISITORS&labelColor=%232ccce4&countColor=%23ba68c8&style=plastic)](https://visitorbadge.io/status?path=https%3A%2F%2Fgithub.com%2FEstebanjgg%2Fconta-hogar)
+
+</div>
+
+
+
+
+
 ## About the project
 
 This project was created for the management of household account calculations, allowing users to keep track of shared expenses and debts. The application uses the following technology:
@@ -48,3 +58,19 @@ npm run dev
 ## Technologies used
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Nextjs-logo.svg" alt="Next.js" width="50" height="50" /> <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" alt="Node.js" width="50" height="50" /> <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg" alt="HTML5" width="50" height="50" /> <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg" alt="CSS3" width="50" height="50" /> <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub Pages" width="50" height="50" />
+
+
+## Contacto
+
+<p align="center">
+  <a href="https://www.facebook.com/estebamg">
+    <img src="https://img.icons8.com/color/96/000000/facebook-new.png" alt="Facebook" width="80" height="80" />
+  </a>
+  <a href="https://www.instagram.com/estebam05">
+    <img src="https://img.icons8.com/color/96/000000/instagram-new.png" alt="Instagram" width="80" height="80" />
+  </a>
+  <a href="https://www.linkedin.com/in/esteban-jose-gonzalez-gomez-297771173/">
+    <img src="https://img.icons8.com/color/96/000000/linkedin.png" alt="LinkedIn" width="80" height="80" />
+  </a>
+</p>
+
