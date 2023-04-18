@@ -1,4 +1,5 @@
 :root {
+
   --max-width: 1100px;
   --border-radius: 12px;
   --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
@@ -8,7 +9,9 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
-
+  --background-color: #eceaea;
+  --text-color: #000;
+  --border-color: #ddd;
   --primary-glow: conic-gradient(
     from 180deg at 50% 50%,
     #16abff33 0deg,
@@ -81,6 +84,7 @@
 
 html,
 body {
+  height: 100%;
   max-width: 100vw;
   overflow-x: hidden;
 }
@@ -95,7 +99,7 @@ body {
     rgb(var(--background-start-rgb));
 }
 
-a {
+Link {
   color: inherit;
   text-decoration: none;
 }
@@ -105,12 +109,81 @@ a {
     color-scheme: dark;
   }
 }
-
-.item-form-container {
+.container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
+}
+.row {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+} 
+
+.item-form-container,
+.accounts-container {
+  width: 80%;
+  max-width: 800px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #222;
+    --text-color: #fff;
+    --border-color: #888;
+  }
+}
+
+.account {
+  width: 100%;
+  max-width: 600px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 20px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  margin: 0 auto; /* Agrega esta propiedad para centrar horizontalmente */
+}
+.h2acount {
+  text-align: center;
+}
+.account ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.account li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  padding: 10px 0;
+}
+
+.account li:last-child {
+  border-bottom: none;
+}
+
+.account .total-value {
+  margin-top: 10px;
+  font-weight: bold;
+}
+.delete-account {
+  margin-top: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
+  background-color: #dc3545;
+  color: #0a0a0a;
+  cursor: pointer;
 }
 
 .item-form {
@@ -204,5 +277,153 @@ a {
   .item-form .value-input, 
   .item-form .date-input {
     flex-basis: 100%;
+  }
+}
+
+.footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  margin-top: 20px;
+}
+nav {
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  position: relative;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 24px;
+  text-decoration: none;
+  color: #fff;
+}
+
+.menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.menu li {
+  margin: 0 10px;
+}
+
+.menu Link {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.menu Link:hover {
+  background-color: #fff;
+  color: #333;
+}
+
+.toggle {
+  width: 30px;
+  height: 20px;
+  position: absolute;
+  top: 15px;
+  right: 10px;
+  display: none;
+  cursor: pointer;
+}
+
+.toggle:before,
+.toggle:after {
+  content: '';
+  width: 100%;
+  height: 3px;
+  background-color: #fff;
+  display: block;
+  position: absolute;
+}
+
+.toggle:before {
+  top: -6px;
+}
+
+.toggle:after {
+  bottom: -6px;
+}
+
+@media (max-width: 768px) {
+  .menu {
+    display: none;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    padding: 10px;
+    text-align: center;
+    flex-direction: column;
+  }
+  
+  .menu li {
+    margin: 10px 0;
+  }
+  
+  .menu Link {
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .toggle {
+    display: block;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .item-form form {
+    flex-direction: column;
+  }
+  
+  .item-form input {
+    flex-basis: 100%;
+  }
+  
+  .item-form .name-input, 
+  .item-form .value-input, 
+  .item-form .date-input {
+    flex-basis: 100%;
+  }
+}
+
+/* estilos para .footer, nav, .logo, .menu, .toggle */
+
+@media (max-width: 768px) {
+  .menu {
+    display: none;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    padding: 10px;
+    text-align: center;
+    flex-direction: column;
+  }
+  
+  .menu li {
+    margin: 10px 0;
+  }
+  
+  .menu Link {
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .toggle {
+    display: block;
   }
 }
