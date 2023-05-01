@@ -2,10 +2,18 @@
 
 import React from "react";
 
+
 const AccountContainer = ({ account, onDelete, onEdit, onEditItem }) => {
-  const handleEditItemInAccount = (itemIndex) => {
-    onEditItem(account.id, itemIndex);
+  const handleEditItemInAccount = (itemIndex, checked) => {
+    onEditItem(account.id, itemIndex, checked);
   };
+
+  const handleToggleChecked = (itemIndex) => {
+    const item = account.items[itemIndex];
+    handleEditItemInAccount(itemIndex, !item.checked);
+  };
+
+
 
   return (
     <div key={account.id} className="account">
@@ -13,10 +21,18 @@ const AccountContainer = ({ account, onDelete, onEdit, onEditItem }) => {
       <ul>
         {account.items.map((item, index) => (
           <li key={item.id}>
+            <input
+              type="checkbox"
+              checked={item.checked || false}
+              onChange={() => handleToggleChecked(index)}
+              className="checkbox-input"
+            />
             <div className="name">{item.name}</div>
-            <div className="value">R$ {item.value}</div>
-            <div className="date">{item.date}</div>
-            <button onClick={() => handleEditItemInAccount(index)} className="edit-item">
+            {/* ... */}
+            <button
+              onClick={() => handleEditItemInAccount(index, item.checked || false)}
+              className="edit-item"
+            >
               Editar
             </button>
           </li>

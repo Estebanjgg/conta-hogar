@@ -2,6 +2,7 @@
 import React from "react";
 import useAccounts from "../components/useAccounts";
 import AccountResultado from "../components/AccountResult";
+import chelista from "../data/chelista.json";
 
 const AccountResultadoPage = () => {
   const [accounts, updateAccounts] = useAccounts();
@@ -14,6 +15,10 @@ const AccountResultadoPage = () => {
 
   function handleEditAccount(index) {
     const accountToEdit = accounts[index];
+    if (!accountToEdit) {
+      console.error("No account found for index:", index);
+      return;
+    }
     const updatedAccountName = prompt("Edit account name", accountToEdit.name);
     if (updatedAccountName) {
       const newAccounts = [...accounts];
@@ -28,16 +33,14 @@ const AccountResultadoPage = () => {
 
     const accountToEdit = accounts[accountIndex];
     const itemToEdit = accountToEdit.items[itemIndex];
-    const updatedItem = prompt("Edit item", JSON.stringify(itemToEdit));
-    if (updatedItem) {
-      const updatedItemObject = JSON.parse(updatedItem);
-      const newItems = [...accountToEdit.items];
-      newItems[itemIndex] = { ...itemToEdit, ...updatedItemObject };
+    const updatedItemObject = { ...itemToEdit, checked: !itemToEdit.checked };
 
-      const newAccounts = [...accounts];
-      newAccounts[accountIndex] = { ...accountToEdit, items: newItems };
-      updateAccounts(newAccounts);
-    }
+    const newItems = [...accountToEdit.items];
+    newItems[itemIndex] = updatedItemObject;
+
+    const newAccounts = [...accounts];
+    newAccounts[accountIndex] = { ...accountToEdit, items: newItems };
+    updateAccounts(newAccounts);
   }
 
   return (
@@ -45,7 +48,9 @@ const AccountResultadoPage = () => {
       accounts={accounts}
       handleDeleteAccount={handleDeleteAccount}
       handleEditAccount={handleEditAccount}
-      handleEditItem={handleEditItem}
+      handleEditItem={(accountId, itemIndex) =>
+        handleEditItem(accountId, itemIndex)
+      }
     />
   );
 };

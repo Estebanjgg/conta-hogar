@@ -116,6 +116,12 @@ const ItemForm = () => {
     }
   }
 
+  function handleToggleChecked(index) {
+    const newItems = [...items];
+    newItems[index] = { ...newItems[index], checked: !newItems[index].checked };
+    localStorage.setItem("items", JSON.stringify(newItems));
+    setItems(newItems);
+  }
   return (
     <div className="container">
       <h2>Control de Gastos</h2>
@@ -143,20 +149,26 @@ const ItemForm = () => {
             </button>
           </form>
           <ul>
-            {items.map((item, index) => (
-              <li key={item.id}>
-                <div className="name">{item.name}</div>
-                <div className="value">R$ {item.value}</div>
-                <div className="date">{item.date}</div>
-                <button onClick={() => handleEdit(index)} className="edit">
-                  Edit
-                </button>
-                <button onClick={() => handleDelete(index)} className="delete">
-                  Delete
-                </button>
-              </li>
-            ))}
-          </ul>
+      {items.map((item, index) => (
+        <li key={item.id}>
+          <input
+            type="checkbox"
+            checked={item.checked || false}
+            onChange={() => handleToggleChecked(index)}
+            className="checkbox-input"
+          />
+          <div className="name">{item.name}</div>
+          <div className="value">R$ {item.value}</div>
+          <div className="date">{item.date}</div>
+          <button onClick={() => handleEdit(index)} className="edit">
+            Edit
+          </button>
+          <button onClick={() => handleDelete(index)} className="delete">
+            Delete
+          </button>
+        </li>
+      ))}
+    </ul>
           <div className="total-value">
             Total valor para Pagar: R$ {totalValue}
           </div>
