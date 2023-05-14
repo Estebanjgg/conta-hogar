@@ -26,9 +26,7 @@ const AccountResultado = ({
                 onUpdateItemName={(accountId, itemIndex) =>
                   handleUpdateItemName(accountId, itemIndex)
                 }
-                onUpdateItemValue={(accountId, itemIndex, value) =>
-                  handleUpdateItemValue(accountId, itemIndex, value)
-                }
+                onUpdateItemValue={handleUpdateItemValue}
               />
             ))}
           </div>

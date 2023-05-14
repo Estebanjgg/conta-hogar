@@ -1,4 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+
+import SimpleCalculator from "./SimpleCalculator";
+import { Button, Modal, Form } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const AccountContainer = ({
   account,
@@ -8,6 +12,21 @@ const AccountContainer = ({
   onUpdateItemName,
   onUpdateItemValue,
 }) => {
+  const [showModal, setShowModal] = useState(false);
+  const [currentItemIndex, setCurrentItemIndex] = useState(null);
+  const [editedItem, setEditedItem] = useState({ name: "", value: "" });
+  const [totalValue, setTotalValue] = useState(0);
+const [totalAfterDeduction, setTotalAfterDeduction] = useState(0);
+
+useEffect(() => {
+  let sum = 0;
+  for (const item of account.items) {
+    sum += parseFloat(item.value);
+  }
+  setTotalValue(sum);
+  setTotalAfterDeduction(sum - account.deduction);
+}, [account.items, account.deduction]);
+
   const handleEditItemInAccount = (itemIndex, checked) => {
     onEditItem(account.id, itemIndex, checked);
   };
@@ -17,20 +36,30 @@ const AccountContainer = ({
     handleEditItemInAccount(itemIndex, !item.checked);
   };
 
-  const handleUpdateName = (itemIndex) => {
+  const handleOpenModal = (itemIndex) => {
     const item = account.items[itemIndex];
-    const updatedName = prompt("Enter the updated name", item.name);
-    if (updatedName) {
-      onUpdateItemName(account.id, itemIndex, updatedName);
-    }
+    setEditedItem({ name: item.name, value: item.value });
+    setCurrentItemIndex(itemIndex);
+    setShowModal(true);
   };
 
-  const handleUpdateValue = (itemIndex) => {
-    const item = account.items[itemIndex];
-    const updatedValue = prompt("Enter the updated value", item.value);
-    if (updatedValue) {
-      onUpdateItemValue(account.id, itemIndex, updatedValue);
-    }
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setCurrentItemIndex(null);
+  };
+
+  const handleSaveChanges = () => {
+    onUpdateItemName(account.id, currentItemIndex, editedItem.name);
+    onUpdateItemValue(account.id, currentItemIndex, editedItem.value);
+    handleCloseModal();
+  };
+
+  const handleInputChange = (e) => {
+    setEditedItem({ ...editedItem, [e.target.name]: e.target.value });
+  };
+
+  const handleDeleteAccount = (itemIndex) => {
+    onDelete(account.id, itemIndex);
   };
 
   return (
@@ -47,34 +76,65 @@ const AccountContainer = ({
             />
             <div className="name">{item.name}</div>
             <div className="value">{item.value}</div>
-            {/* ... */}
+
             <button
-              onClick={() => handleUpdateName(index)}
+              onClick={() => handleOpenModal(index)}
               className="edit-item"
             >
-              Editar Nombre
-            </button>
-            <button
-              onClick={() => handleUpdateValue(index)}
-              className="edit-item"
-            >
-              Editar Valor
+              Editar
             </button>
           </li>
         ))}
       </ul>
-      <div className="total-value">Total Cuentas: R$ {account.totalValue}</div>
-      <div className="total-after-deduction">
-        Total after deduction: R$ {account.totalAfterDeduction}
-      </div>
+      <div className="total-value">Total Valor : R$ {totalValue}</div>
+
+
       <button onClick={onEdit} className="edit-account">
         Editar Cuenta
       </button>
-      <button onClick={onDelete} className="delete-account">
+      <button onClick={handleDeleteAccount} className="delete-account">
         Eliminar Cuenta
       </button>
+      <SimpleCalculator />
+
+      <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Editar Nombre y Valor</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group controlId="editName">
+              <Form.Label>Nombre</Form.Label>
+              <Form.Control
+                type="text"
+                name="name"
+                value={editedItem.name}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+            <Form.Group controlId="editValue">
+              <Form.Label>Valor</Form.Label>
+              <Form.Control
+                type="text"
+                name="value"
+                value={editedItem.value}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseModal}>
+            Cancelar
+          </Button>
+          <Button variant="primary" onClick={handleSaveChanges}>
+            Guardar Cambios
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };
 
 export default AccountContainer;
+

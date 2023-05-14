@@ -46,15 +46,13 @@ const AccountResultadoPage = () => {
   }
 
 
-function handleUpdateItemName(accountId, itemIndex) {
-  const accountIndex = accounts.findIndex((account) => account.id === accountId);
-  if (accountIndex === -1) return;
+  function handleUpdateItemName(accountId, itemIndex, newName) {
+    const accountIndex = accounts.findIndex((account) => account.id === accountId);
+    if (accountIndex === -1) return;
 
-  const accountToEdit = accounts[accountIndex];
-  const itemToEdit = accountToEdit.items[itemIndex];
-  const updatedItemName = prompt("Edit item name", itemToEdit.name);
-  if (updatedItemName) {
-    const updatedItemObject = { ...itemToEdit, name: updatedItemName };
+    const accountToEdit = accounts[accountIndex];
+    const itemToEdit = accountToEdit.items[itemIndex];
+    const updatedItemObject = { ...itemToEdit, name: newName };
 
     const newItems = [...accountToEdit.items];
     newItems[itemIndex] = updatedItemObject;
@@ -63,24 +61,39 @@ function handleUpdateItemName(accountId, itemIndex) {
     newAccounts[accountIndex] = { ...accountToEdit, items: newItems };
     updateAccounts(newAccounts);
   }
-}
 
-  
-return (
-  <AccountResultado
-    accounts={accounts}
-    handleDeleteAccount={handleDeleteAccount}
-    handleEditAccount={handleEditAccount}
-    handleEditItem={(accountId, itemIndex) =>
-      handleEditItem(accountId, itemIndex)
-    }
-    handleUpdateItemName={(accountId, itemIndex) =>
-      handleUpdateItemName(accountId, itemIndex)
-    }
-  />
-);
+  function handleUpdateItemValue(accountId, itemIndex, newValue) {
+    const accountIndex = accounts.findIndex((account) => account.id === accountId);
+    if (accountIndex === -1) return;
 
-  
+    const accountToEdit = accounts[accountIndex];
+    const itemToEdit = accountToEdit.items[itemIndex];
+    const updatedItemObject = { ...itemToEdit, value: newValue };
+
+    const newItems = [...accountToEdit.items];
+    newItems[itemIndex] = updatedItemObject;
+
+    const newAccounts = [...accounts];
+    newAccounts[accountIndex] = { ...accountToEdit, items: newItems };
+    updateAccounts(newAccounts);
+  }
+
+  return (
+    <AccountResultado
+      accounts={accounts}
+      handleDeleteAccount={handleDeleteAccount}
+      handleEditAccount={handleEditAccount}
+      handleEditItem={(accountId, itemIndex) =>
+        handleEditItem(accountId, itemIndex)
+      }
+      handleUpdateItemName={(accountId, itemIndex, newName) =>
+        handleUpdateItemName(accountId, itemIndex, newName)
+      }
+      handleUpdateItemValue={(accountId, itemIndex, newValue) =>
+        handleUpdateItemValue(accountId, itemIndex, newValue)
+      }
+    />
+  );
 };
 
 export default AccountResultadoPage;

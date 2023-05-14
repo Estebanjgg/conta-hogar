@@ -14,6 +14,7 @@ const ItemForm = () => {
   const [showModal, setShowModal] = useState(false);
   const [itemToEditIndex, setItemToEditIndex] = useState(null);
   const [accounts, updateAccounts] = useAccounts();
+  
 
   useEffect(() => {
     const itemsFromStorage = localStorage.getItem("items");
@@ -58,12 +59,15 @@ const ItemForm = () => {
     setItemToEditIndex(index);
     setShowModal(true);
   }
-
   function handleModalSave(updatedItem) {
     const newItems = [...items];
     newItems[itemToEditIndex] = { ...items[itemToEditIndex], ...updatedItem };
     localStorage.setItem("items", JSON.stringify(newItems));
     setItems(newItems);
+    setShowModal(false);
+  }
+  
+  function handleModalClose() {
     setShowModal(false);
   }
   
@@ -86,6 +90,7 @@ const ItemForm = () => {
     updateAccounts(newAccounts);
     setItems([]);
     setAccountName("");
+    
   }
 
   function handleDeleteAccount(index) {
@@ -164,12 +169,7 @@ const ItemForm = () => {
           <ul>
       {items.map((item, index) => (
         <li key={item.id}>
-          <input
-            type="checkbox"
-            checked={item.checked || false}
-            onChange={() => handleToggleChecked(index)}
-            className="checkbox-input"
-          />
+         
           <div className="name">{item.name}</div>
           <div className="value">R$ {item.value}</div>          
           <button onClick={() => handleEdit(index)} className="edit">
