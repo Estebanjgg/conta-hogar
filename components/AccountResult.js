@@ -1,8 +1,14 @@
 import React from "react";
 import AccountContainer from "./AccountContainer";
 
-
-const AccountResultado = ({ accounts, handleDeleteAccount, handleEditAccount, handleEditItem }) => {
+const AccountResultado = ({
+  accounts,
+  handleDeleteAccount,
+  handleEditAccount,
+  handleEditItem,
+  handleUpdateItemName,
+  handleUpdateItemValue
+}) => {
   return (
     <div className="container">
       <div className="row">
@@ -17,6 +23,12 @@ const AccountResultado = ({ accounts, handleDeleteAccount, handleEditAccount, ha
                 onDelete={() => handleDeleteAccount(index)}
                 onEdit={() => handleEditAccount(index)}
                 onEditItem={handleEditItem}
+                onUpdateItemName={(accountId, itemIndex) =>
+                  handleUpdateItemName(accountId, itemIndex)
+                }
+                onUpdateItemValue={(accountId, itemIndex, value) =>
+                  handleUpdateItemValue(accountId, itemIndex, value)
+                }
               />
             ))}
           </div>

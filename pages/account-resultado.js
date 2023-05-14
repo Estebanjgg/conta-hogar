@@ -2,7 +2,7 @@
 import React from "react";
 import useAccounts from "../components/useAccounts";
 import AccountResultado from "../components/AccountResult";
-import chelista from "../data/chelista.json";
+
 
 const AccountResultadoPage = () => {
   const [accounts, updateAccounts] = useAccounts();
@@ -13,6 +13,8 @@ const AccountResultadoPage = () => {
     updateAccounts(newAccounts);
   }
 
+
+  
   function handleEditAccount(index) {
     const accountToEdit = accounts[index];
     if (!accountToEdit) {
@@ -43,16 +45,42 @@ const AccountResultadoPage = () => {
     updateAccounts(newAccounts);
   }
 
-  return (
-    <AccountResultado
-      accounts={accounts}
-      handleDeleteAccount={handleDeleteAccount}
-      handleEditAccount={handleEditAccount}
-      handleEditItem={(accountId, itemIndex) =>
-        handleEditItem(accountId, itemIndex)
-      }
-    />
-  );
+
+function handleUpdateItemName(accountId, itemIndex) {
+  const accountIndex = accounts.findIndex((account) => account.id === accountId);
+  if (accountIndex === -1) return;
+
+  const accountToEdit = accounts[accountIndex];
+  const itemToEdit = accountToEdit.items[itemIndex];
+  const updatedItemName = prompt("Edit item name", itemToEdit.name);
+  if (updatedItemName) {
+    const updatedItemObject = { ...itemToEdit, name: updatedItemName };
+
+    const newItems = [...accountToEdit.items];
+    newItems[itemIndex] = updatedItemObject;
+
+    const newAccounts = [...accounts];
+    newAccounts[accountIndex] = { ...accountToEdit, items: newItems };
+    updateAccounts(newAccounts);
+  }
+}
+
+  
+return (
+  <AccountResultado
+    accounts={accounts}
+    handleDeleteAccount={handleDeleteAccount}
+    handleEditAccount={handleEditAccount}
+    handleEditItem={(accountId, itemIndex) =>
+      handleEditItem(accountId, itemIndex)
+    }
+    handleUpdateItemName={(accountId, itemIndex) =>
+      handleUpdateItemName(accountId, itemIndex)
+    }
+  />
+);
+
+  
 };
 
 export default AccountResultadoPage;

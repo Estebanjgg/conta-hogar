@@ -4,12 +4,15 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import AccountContainer from "./AccountContainer";
 import useAccounts from "./useAccounts";
+import EditItemModal from './EditItemModal';
+
 
 const ItemForm = () => {
   const [items, setItems] = useState([]);
   const [accountName, setAccountName] = useState("");
   const [deduction, setDeduction] = useState(0);
-
+  const [showModal, setShowModal] = useState(false);
+  const [itemToEditIndex, setItemToEditIndex] = useState(null);
   const [accounts, updateAccounts] = useAccounts();
 
   useEffect(() => {
@@ -35,8 +38,7 @@ const ItemForm = () => {
     const form = event.target;
     const newItem = {
       name: form.name.value,
-      value: form.value.value,
-      date: form.date.value,
+      value: form.value.value,      
       id: new Date().getTime(),
     };
     const newItems = [...items, newItem];
@@ -53,16 +55,22 @@ const ItemForm = () => {
   }
 
   function handleEdit(index) {
-    const itemToEdit = items[index];
-    const updatedItem = prompt("Edit item", JSON.stringify(itemToEdit));
-    if (updatedItem) {
-      const updatedItemObject = JSON.parse(updatedItem);
-      const newItems = [...items];
-      newItems[index] = { ...itemToEdit, ...updatedItemObject };
-      localStorage.setItem("items", JSON.stringify(newItems));
-      setItems(newItems);
-    }
+    setItemToEditIndex(index);
+    setShowModal(true);
   }
+
+  function handleModalSave(updatedItem) {
+    const newItems = [...items];
+    newItems[itemToEditIndex] = { ...items[itemToEditIndex], ...updatedItem };
+    localStorage.setItem("items", JSON.stringify(newItems));
+    setItems(newItems);
+    setShowModal(false);
+  }
+  
+  function handleModalClose() {
+    setShowModal(false);
+  }
+  
 
   function handleFinishAccount() {
     const newAccount = {
@@ -129,6 +137,12 @@ const ItemForm = () => {
       
       <br />
       <br />
+      <EditItemModal
+    show={showModal}
+    item={items[itemToEditIndex] || {}}
+    onSave={handleModalSave}
+    onClose={handleModalClose}
+  />
         <div className="item-form">
           <form onSubmit={handleSubmit}>
             <input
@@ -143,8 +157,7 @@ const ItemForm = () => {
               placeholder="Value"
               className="value-input"
             />
-            <input type="date" name="date" className="date-input" />
-            <button type="submit" className="add-button">
+           <button type="submit" className="add-button">
               Agregar Factura
             </button>
           </form>
@@ -158,8 +171,7 @@ const ItemForm = () => {
             className="checkbox-input"
           />
           <div className="name">{item.name}</div>
-          <div className="value">R$ {item.value}</div>
-          <div className="date">{item.date}</div>
+          <div className="value">R$ {item.value}</div>          
           <button onClick={() => handleEdit(index)} className="edit">
             Edit
           </button>

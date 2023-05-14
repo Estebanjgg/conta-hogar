@@ -1,9 +1,13 @@
-// AccountContainer.js
-
 import React from "react";
 
-
-const AccountContainer = ({ account, onDelete, onEdit, onEditItem }) => {
+const AccountContainer = ({
+  account,
+  onDelete,
+  onEdit,
+  onEditItem,
+  onUpdateItemName,
+  onUpdateItemValue,
+}) => {
   const handleEditItemInAccount = (itemIndex, checked) => {
     onEditItem(account.id, itemIndex, checked);
   };
@@ -13,7 +17,21 @@ const AccountContainer = ({ account, onDelete, onEdit, onEditItem }) => {
     handleEditItemInAccount(itemIndex, !item.checked);
   };
 
+  const handleUpdateName = (itemIndex) => {
+    const item = account.items[itemIndex];
+    const updatedName = prompt("Enter the updated name", item.name);
+    if (updatedName) {
+      onUpdateItemName(account.id, itemIndex, updatedName);
+    }
+  };
 
+  const handleUpdateValue = (itemIndex) => {
+    const item = account.items[itemIndex];
+    const updatedValue = prompt("Enter the updated value", item.value);
+    if (updatedValue) {
+      onUpdateItemValue(account.id, itemIndex, updatedValue);
+    }
+  };
 
   return (
     <div key={account.id} className="account">
@@ -28,12 +46,19 @@ const AccountContainer = ({ account, onDelete, onEdit, onEditItem }) => {
               className="checkbox-input"
             />
             <div className="name">{item.name}</div>
+            <div className="value">{item.value}</div>
             {/* ... */}
             <button
-              onClick={() => handleEditItemInAccount(index, item.checked || false)}
+              onClick={() => handleUpdateName(index)}
               className="edit-item"
             >
-              Editar
+              Editar Nombre
+            </button>
+            <button
+              onClick={() => handleUpdateValue(index)}
+              className="edit-item"
+            >
+              Editar Valor
             </button>
           </li>
         ))}
@@ -43,10 +68,10 @@ const AccountContainer = ({ account, onDelete, onEdit, onEditItem }) => {
         Total after deduction: R$ {account.totalAfterDeduction}
       </div>
       <button onClick={onEdit} className="edit-account">
-       Editar Cuenta
+        Editar Cuenta
       </button>
       <button onClick={onDelete} className="delete-account">
-       Eliminar Cuenta
+        Eliminar Cuenta
       </button>
     </div>
   );
