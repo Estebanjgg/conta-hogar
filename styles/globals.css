@@ -474,3 +474,18 @@ nav {
   color: #999;
   cursor: pointer;
 }
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.calculate-button {
+  animation: pulse 2s infinite;
+}

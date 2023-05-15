@@ -27,7 +27,7 @@ const SimpleCalculator = () => {
 
   return (
     <div className="simple-calculator">
-      <h3>Calculadora</h3>
+      <h3>Calculadora 🧮</h3>
       <input
         type="text"
         value={display}
@@ -52,7 +52,7 @@ const SimpleCalculator = () => {
         {createButton("C", handleClear)}
         {createButton("+", () => handleClick("+"))}
       </div>
-      <button onClick={handleCalculate} className="calculate-button">
+      <button onClick={handleCalculate} className="add-button calculate-button">
         Calcular
       </button>
     </div>

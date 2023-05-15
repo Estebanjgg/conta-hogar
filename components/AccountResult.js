@@ -14,7 +14,7 @@ const AccountResultado = ({
       <div className="row">
         <div className="accounts-container">
           <div className="accounts">
-            <h2 className="h2acount">Cuentas A Pagar Por Mes</h2>
+            <h2 className="h2acount">Control De Cuentas 😁</h2>
             <br />
             {accounts.map((account, index) => (
               <AccountContainer

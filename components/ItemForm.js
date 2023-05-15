@@ -144,7 +144,7 @@ localStorage.removeItem("items");
   // }
   return (
     <div className="container">
-      <h2>Control de Gastos</h2>
+      <h2>Control de Gastos Para el Hogar</h2>
       <div className="row">
       
       <br />
@@ -160,18 +160,18 @@ localStorage.removeItem("items");
             <input
               type="text"
               name="name"
-              placeholder="Item name"
+              placeholder="Nombre del producto  🍉🍊💡🚰"
               className="name-input"
             />
             <input
               type="text"
               name="value"
-              placeholder="Value"
+              placeholder="Valor Monetario"
               className="value-input"
             />
            
             <button type="submit" className="add-button">
-              Agregar Factura
+              Agregar Item
             </button>
           </form>
           <ul>
@@ -187,16 +187,16 @@ localStorage.removeItem("items");
           <div className="value">R$ {item.value}</div>
           
           <button onClick={() => handleEdit(index)} className="edit">a
-            Edit
+            Editar
           </button>
           <button onClick={() => handleDelete(index)} className="delete">
-            Delete
+            Borrar
           </button>
         </li>
       ))}
     </ul>
           <div className="total-value">
-            Total valor para Pagar: R$ {totalValue}
+            Total De la Suma De los Item 💵: R$ {totalValue}
           </div>
           <input
             type="text"
@@ -206,7 +206,7 @@ localStorage.removeItem("items");
             className="deduction-input"
           />
           <div className="total-after-deduction">
-            Total Despues de las Deduccion: R$ {totalAfterDeduction}
+            Total del valor con Deducciones 💵 : R$ {totalAfterDeduction}
           </div>
           {items.length > 0 && (
             <>
@@ -214,11 +214,11 @@ localStorage.removeItem("items");
                 type="text"
                 value={accountName}
                 onChange={(e) => setAccountName(e.target.value)}
-                placeholder="Nombre Del Mes"
+                placeholder="Nombre De La Cuenta"
                 className="account-name-input"
               />
               <button onClick={handleFinishAccount} className="finish-account">
-                Crear Mes a Pagar
+                Crear Cuenta
               </button>
             </>
           )}
@@ -234,7 +234,7 @@ localStorage.removeItem("items");
                 legacyBehavior
                 className="account-resultado-link"
               >
-                Ver cuentas a pagar por mes
+                Ver las Cuentas Creadas 
               </Link>
             </div>
           </div>
