@@ -77,6 +77,10 @@ const AccountResultadoPage = () => {
     newAccounts[accountIndex] = { ...accountToEdit, items: newItems };
     updateAccounts(newAccounts);
   }
+  function handleUpdateAccount(updatedAccounts) {
+    updateAccounts(updatedAccounts);
+  }
+  
 
   return (
     <AccountResultado
@@ -92,8 +96,10 @@ const AccountResultadoPage = () => {
       handleUpdateItemValue={(accountId, itemIndex, newValue) =>
         handleUpdateItemValue(accountId, itemIndex, newValue)
       }
+      handleUpdateAccount={handleUpdateAccount} 
     />
   );
+  
 };
 
 export default AccountResultadoPage;

@@ -7,8 +7,22 @@ const AccountResultado = ({
   handleEditAccount,
   handleEditItem,
   handleUpdateItemName,
-  handleUpdateItemValue
+  handleUpdateItemValue,
+  handleUpdateAccount,
 }) => {
+  
+  function onUpdateItems(accountId, items) {
+    const accountIndex = accounts.findIndex(
+      (account) => account.id === accountId
+    );
+    if (accountIndex === -1) return;
+  
+    const newAccounts = [...accounts];
+    newAccounts[accountIndex] = { ...accounts[accountIndex], items: items };
+    handleUpdateAccount(newAccounts);
+  }
+  
+
   return (
     <div className="container">
       <div className="row">
@@ -27,6 +41,7 @@ const AccountResultado = ({
                   handleUpdateItemName(accountId, itemIndex)
                 }
                 onUpdateItemValue={handleUpdateItemValue}
+                onUpdateItems={onUpdateItems}    // Cambie esta línea
               />
             ))}
           </div>

@@ -157,17 +157,18 @@ localStorage.removeItem("items");
   />
         <div className="item-form">
           <form onSubmit={handleSubmit}>
+            
             <input
               type="text"
               name="name"
-              placeholder="Nombre del producto  🍉🍊💡🚰"
+              placeholder="Nombre del producto🍉🍊💡🚰"
               className="name-input"
             />
             <input
               type="text"
               name="value"
-              placeholder="Valor Monetario"
-              className="value-input"
+              placeholder="Valor Monetario(Opcional)🫡"
+              className=" "
             />
            
             <button type="submit" className="add-button">
@@ -186,11 +187,11 @@ localStorage.removeItem("items");
           <div className="name">{item.name}</div>
           <div className="value">R$ {item.value}</div>
           
-          <button onClick={() => handleEdit(index)} className="edit">a
-            Editar
+          <button onClick={() => handleEdit(index)} className="edit">
+            Editar Item
           </button>
           <button onClick={() => handleDelete(index)} className="delete">
-            Borrar
+            Borrar Item
           </button>
         </li>
       ))}
@@ -206,20 +207,25 @@ localStorage.removeItem("items");
             className="deduction-input"
           />
           <div className="total-after-deduction">
-            Total del valor con Deducciones 💵 : R$ {totalAfterDeduction}
+            Total suma mas Resta  💵 : R$ {totalAfterDeduction}
           </div>
-          {items.length > 0 && (
+          {items.length > 0  && (
             <>
+            <br />
+      <br />
               <input
                 type="text"
                 value={accountName}
                 onChange={(e) => setAccountName(e.target.value)}
-                placeholder="Nombre De La Cuenta"
+                placeholder="Nombre Opcional 🫡"
                 className="account-name-input"
               />
+              
               <button onClick={handleFinishAccount} className="finish-account">
-                Crear Cuenta
+                
+                Crear Lista de Item
               </button>
+             
             </>
           )}
         </div>
@@ -234,7 +240,7 @@ localStorage.removeItem("items");
                 legacyBehavior
                 className="account-resultado-link"
               >
-                Ver las Cuentas Creadas 
+                👉 Ir para los item Creados 👈
               </Link>
             </div>
           </div>

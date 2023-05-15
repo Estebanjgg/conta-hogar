@@ -489,3 +489,20 @@ nav {
 .calculate-button {
   animation: pulse 2s infinite;
 }
+
+a {
+  display: inline-block;
+  padding: 10px 20px;
+
+  color: #020202;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  text-decoration: none;
+}
+
+a:hover {
+  background-color: #00b395;
+  color: #000000;
+}
