@@ -1,6 +1,5 @@
 // EditItemModal.js
-import React, { useState} from "react"
-
+import React, { useState } from 'react';
 
 const EditItemModal = ({ show, item, onSave, onClose }) => {
   const [updatedItem, setUpdatedItem] = useState(item);

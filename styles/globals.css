@@ -373,35 +373,7 @@ nav {
 }
 
 
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
 
-.modal-content {
-  background-color: white;
-  width: 400px;
-  padding: 20px;
-  border-radius: 8px;
-  position: relative;
-}
-
-.modal-close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 24px;
-  color: #999;
-  cursor: pointer;
-}
 .simple-calculator {
   display: flex;
   flex-direction: column;
@@ -458,7 +430,7 @@ nav {
 .simple-calculator button {
   width: 100%;
   height: 40px;
-  font-size: 18px; /* Tamaño de fuente más grande para los botones */
+  font-size: 30px; /* Tamaño de fuente más grande para los botones */
 }
 
 .simple-calculator .calculate-button {
@@ -469,4 +441,36 @@ nav {
 }
 .total-after-deduction{
   color: #007bff;
+}
+
+
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-content {
+  background-color: white;
+  width: 400px;
+  padding: 20px;
+  border-radius: 8px;
+  position: relative;
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  color: #999;
+  cursor: pointer;
 }

@@ -1,5 +1,3 @@
-// ItemForm.js
-
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import AccountContainer from "./AccountContainer";
@@ -7,14 +5,16 @@ import useAccounts from "./useAccounts";
 import EditItemModal from './EditItemModal';
 
 
+
 const ItemForm = () => {
   const [items, setItems] = useState([]);
   const [accountName, setAccountName] = useState("");
   const [deduction, setDeduction] = useState(0);
+  const [accounts, updateAccounts] = useAccounts();
   const [showModal, setShowModal] = useState(false);
   const [itemToEditIndex, setItemToEditIndex] = useState(null);
-  const [accounts, updateAccounts] = useAccounts();
   
+
 
   useEffect(() => {
     const itemsFromStorage = localStorage.getItem("items");
@@ -39,7 +39,8 @@ const ItemForm = () => {
     const form = event.target;
     const newItem = {
       name: form.name.value,
-      value: form.value.value,      
+      value: form.value.value,
+      
       id: new Date().getTime(),
     };
     const newItems = [...items, newItem];
@@ -58,16 +59,22 @@ const ItemForm = () => {
   function handleEdit(index) {
     setItemToEditIndex(index);
     setShowModal(true);
+    const itemToEdit = items[index];
+    const updatedItem = prompt("Edit item", JSON.stringify(itemToEdit));
+    if (updatedItem) {
+      const updatedItemObject = JSON.parse(updatedItem);
+      const newItems = [...items];
+      newItems[index] = { ...itemToEdit, ...updatedItemObject };
+      localStorage.setItem("items", JSON.stringify(newItems));
+      setItems(newItems);
+    }
   }
+
   function handleModalSave(updatedItem) {
     const newItems = [...items];
     newItems[itemToEditIndex] = { ...items[itemToEditIndex], ...updatedItem };
     localStorage.setItem("items", JSON.stringify(newItems));
     setItems(newItems);
-    setShowModal(false);
-  }
-  
-  function handleModalClose() {
     setShowModal(false);
   }
   
@@ -89,8 +96,8 @@ const ItemForm = () => {
     const newAccounts = [...accounts, newAccount];
     updateAccounts(newAccounts);
     setItems([]);
-    setAccountName("");
-    
+setAccountName("");
+localStorage.removeItem("items");
   }
 
   function handleDeleteAccount(index) {
@@ -129,12 +136,12 @@ const ItemForm = () => {
     }
   }
 
-  function handleToggleChecked(index) {
-    const newItems = [...items];
-    newItems[index] = { ...newItems[index], checked: !newItems[index].checked };
-    localStorage.setItem("items", JSON.stringify(newItems));
-    setItems(newItems);
-  }
+  // function handleToggleChecked(index) {
+  //   const newItems = [...items];
+  //   newItems[index] = { ...newItems[index], checked: !newItems[index].checked };
+  //   localStorage.setItem("items", JSON.stringify(newItems));
+  //   setItems(newItems);
+  // }
   return (
     <div className="container">
       <h2>Control de Gastos</h2>
@@ -162,17 +169,24 @@ const ItemForm = () => {
               placeholder="Value"
               className="value-input"
             />
-           <button type="submit" className="add-button">
+           
+            <button type="submit" className="add-button">
               Agregar Factura
             </button>
           </form>
           <ul>
       {items.map((item, index) => (
         <li key={item.id}>
-         
+          {/* <input
+            type="checkbox"
+            checked={item.checked || false}
+            onChange={() => handleToggleChecked(index)}
+            className="checkbox-input"
+          /> */}
           <div className="name">{item.name}</div>
-          <div className="value">R$ {item.value}</div>          
-          <button onClick={() => handleEdit(index)} className="edit">
+          <div className="value">R$ {item.value}</div>
+          
+          <button onClick={() => handleEdit(index)} className="edit">a
             Edit
           </button>
           <button onClick={() => handleDelete(index)} className="delete">
