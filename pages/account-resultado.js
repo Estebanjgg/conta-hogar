@@ -2,7 +2,8 @@
 import React from "react";
 import useAccounts from "../components/useAccounts";
 import AccountResultado from "../components/AccountResult";
-
+import NavBar from '@/components/NavBar';
+import Footer from '@/components/Footer';
 
 const AccountResultadoPage = () => {
   const [accounts, updateAccounts] = useAccounts();
@@ -83,6 +84,8 @@ const AccountResultadoPage = () => {
   
 
   return (
+    <>
+    <NavBar /> 
     <AccountResultado
       accounts={accounts}
       handleDeleteAccount={handleDeleteAccount}
@@ -98,6 +101,8 @@ const AccountResultadoPage = () => {
       }
       handleUpdateAccount={handleUpdateAccount} 
     />
+    <Footer /> 
+     </>
   );
   
 };

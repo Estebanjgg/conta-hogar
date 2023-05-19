@@ -4,6 +4,8 @@ import AccountContainer from "./AccountContainer";
 import useAccounts from "./useAccounts";
 import EditItemModal from './EditItemModal';
 
+import NavBar from '@/components/NavBar';
+import Footer from '@/components/Footer';
 
 
 const ItemForm = () => {
@@ -143,6 +145,8 @@ localStorage.removeItem("items");
   //   setItems(newItems);
   // }
   return (
+    <>
+    <NavBar />  
     <div className="container">
       <h2>Control de Gastos Para el Hogar</h2>
       <div className="row">
@@ -247,6 +251,8 @@ localStorage.removeItem("items");
         </div>
       )}
     </div>
+     <Footer />
+    </>
   );
 };
 export default ItemForm;

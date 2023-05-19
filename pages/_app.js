@@ -1,8 +1,7 @@
 import "@/styles/globals.css";
-import NavBar from '@/components/NavBar';
-import Footer from '@/components/Footer';
-import Background from "@/components/Background";
 
+import Background from "@/components/Background";
+import { AuthProvider } from '../components/AuthContext';
 
 
 
@@ -10,14 +9,14 @@ function App({ Component, pageProps }) {
 
 
   return (
-    <>
+    <AuthProvider>
      <div style={{ width: '100%', height: '100%' }}>
    < Background />
-      <NavBar />             
+                  
           <Component {...pageProps} />            
-      <Footer />
+     
       </div>
-    </>
+    </AuthProvider>
   );
 }
 

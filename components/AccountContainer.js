@@ -86,6 +86,9 @@ const AccountContainer = ({
   };
 
   return (
+   
+     
+    
     <div key={account.id} className="account">
       <h4>{account.name}</h4>
       <ul>
@@ -184,6 +187,7 @@ const AccountContainer = ({
         </Modal.Footer>
       </Modal>
     </div>
+     
   );
 };
 

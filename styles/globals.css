@@ -439,6 +439,23 @@ nav {
   margin-top: 10px;
   font-size: 18px; /* Tamaño de fuente más grande para el botón Calcular */
 }
+
+.simple-calculator .history {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.simple-calculator .history ul {
+  list-style: none;
+  padding: 0;
+}
+.simple-calculator .history button {
+  margin-left: 10px;
+  font-size: 12px; 
+  width: 90px;
+}
+
+
 .total-after-deduction{
   color: #007bff;
 }
@@ -505,4 +522,7 @@ a {
 a:hover {
   background-color: #00b395;
   color: #000000;
+}
+.form-control{
+background-color: #000000;
 }

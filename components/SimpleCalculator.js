@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-
 const SimpleCalculator = () => {
   const [display, setDisplay] = useState("");
+  const [history, setHistory] = useState([]);
 
   const handleClick = (value) => {
     setDisplay((prev) => prev + value);
@@ -16,9 +16,16 @@ const SimpleCalculator = () => {
     try {
       const result = eval(display);
       setDisplay(result.toString());
+
+      // Agregar cálculo al historial
+      setHistory((prevHistory) => [...prevHistory, { calculation: `${display} = ${result}`, id: Date.now() }]);
     } catch (error) {
       alert("Expresión inválida");
     }
+  };
+
+  const handleDelete = (id) => {
+    setHistory((prevHistory) => prevHistory.filter(item => item.id !== id));
   };
 
   const createButton = (value, onClick = handleClick) => (
@@ -55,6 +62,17 @@ const SimpleCalculator = () => {
       <button onClick={handleCalculate} className="add-button calculate-button">
         Calcular
       </button>
+      <div className="history">
+        <h3>Historial de cálculos</h3>
+        <ul>
+          {history.map((item) => (
+            <li key={item.id}>
+              {item.calculation}
+              <button onClick={() => handleDelete(item.id)}>Eliminar</button>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
